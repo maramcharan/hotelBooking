@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <style>
+                .setMargin {
+                    margin-top: 20px;
+                    color:white;
+                    width:1110px;
+                    font-size: 2em;
+                    text-align: center;
+                }
+                #Roomdetails{
+                    color: white;
+                }
+                .table{
+                    color: white;
+                }
+               
+                body{
+                    background-image: url("../images/novotel.jpg");
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-size: 100%;
+                }
+                .form-group{
+                color: white;
+                }
+               </style>
+               <script>
+                
+                   function Bookroom(){
+                       document.getElementById("Roombooking").style.display="none";
+                       document.getElementById("Bookingdetails").style.display="block";
+                       var customerName =document.getElementById("txtName").value;
+                       var checkInDate=document.getElementById("bookingDate").value;
+                       var totalNoOfDays=document.getElementById("days").value;
+                       var totalNoOfPersons=document.getElementById("persons").value;
+                       var roomType;
+                       var roomCost;
+                       var selectedAminities=" ";
+                       var aminitiesCost;
+                       var roomDeluxe=document.getElementById("deluxeroom");
+                       var roomSuite=document.getElementById("suiteroom");
+                       var lockerAminities=document.getElementById("locker");
+                       var acAminities=document.getElementById("ac");
+                       if(deluxeroom.checked){
+                           roomType=roomDeluxe.value;
+                           roomCost=2000;
+                       }
+                       if(suiteroom.checked){
+                           roomType=roomSuite.value;
+                           roomCost=4000;
+                       }
+                       if(locker.checked){
+                           selectedAminities+=lockerAminities.value + "<br>";
+                           aminitiesCost=500;
+                           roomCost=roomCost+aminitiesCost;
+
+                       }
+                       if(ac.checked){
+                           selectedAminities+=acAminities.value + "<br>";
+                           aminitiesCost=1000;
+                           roomCost=roomCost+aminitiesCost;
+                       }
+                       if(totalNoOfPersons>2){
+                           var x=totalNoOfPersons-2;
+                           var y=x*500;
+                           roomCost=roomCost+y;
+
+                       }
+                       roomCost=roomCost*totalNoOfDays;
+                      
+                       var advancePaid=document.getElementById("roomAdvance").value;
+                       var balanceAmount=roomCost-advancePaid;
+                       document.getElementById("lblName").innerHTML=customerName;
+                       document.getElementById("lblDate").innerHTML=checkInDate;
+                       document.getElementById("lblDays").innerHTML=totalNoOfDays;
+                       document.getElementById("lblPersons").innerHTML=totalNoOfPersons;
+                       document.getElementById("lblRoomtype").innerHTML=roomType;
+                       document.getElementById("lblAminities").innerHTML=selectedAminities;
+                       document.getElementById("lblAmount").innerHTML=roomCost;
+                       document.getElementById("lblAdvance").innerHTML=advancePaid;
+                      document.getElementById("lblBalance").innerHTML=balanceAmount;
+                   }
+                   function verifyText(){
+                       window.z=document.getElementById("roomAdvance").value;
+                       if(z==""){
+                           document.getElementById("abc").disabled=true;
+                       }else{
+                           document.getElementById("abc").disabled=false;
+                       }
+                   }
+              
+            
+                   function Closedetails(){
+                       document.getElementById("Roombooking").style.display="block";
+                       document.getElementById("Bookingdetails").style.display="none";
+                   }
+
+               </script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="Roombooking"> 
+                <div>
+                    <img src="../images/NovotelLogo.jpg" class="img-thumbnail">
+
+                </div>
+                <div class="setMargin">
+                    CUSTOMER DETAILS
+                </div>
+                <div class="form-group">
+                   
+                    <label>CUSTOMER NAME</label>
+                    <input type="text" id="txtName" class="form-control" placeholder="Enter Your Name">
+                    
+                    <label>CHECK IN DATE</label>
+                    <input type="date" class="form-control" id="bookingDate"> 
+                    
+                    <label>TOTAL NO OF DAYS</label>
+                    <input type="number" class="form-control" min="0" value="0" id="days">
+                
+                    <label>TOTAL NO OF PERSONS</label>
+                    <input type="number" class="form-control" min="0" value="0" id="persons">
+                
+            </div>
+            <div class="setMargin">
+                   SELECT ROOM TYPE 
+                    <div class="card-deck" >
+                        <div class="card">       
+                            <div class="card-body text-primary">
+                                <input class="form-control" type="radio" id="deluxeroom" name="selectRoom" value="DELUXE ROOM"> DELUXE ROOM
+                                &#8377; 2000/- PER DAY
+                            </div>
+                            <div class="card-footer">
+                                    <img src="../Images/deluxe.jpg" class="img-thumbnail" style="height: 600px;">
+                                </div>
+                        </div>
+                        <div class="card">
+                            <div class= "card-body text-primary">
+                                <input  class="form-control" type="radio" id="suiteroom" value="SUITE ROOM" name="selectRoom" >SUITE ROOM
+                                &#8377; 4000/- PER DAY
+                            </div>
+                            <div class="card-footer">
+                                    <img src="../images/suite.jpg" class="img-thumbnail" style="height: 600px;">
+                            </div>
+                        </div>
+                  </div>
+         </div>
+         <div class="setMargin">
+                SELECT AMINITIES
+             <div class="card-deck">
+                 <div class="card">
+                   <div class="card-body text-primary">
+                    <input type="checkbox" class="form-control" id="locker" value="LOCKER">LOCKER
+                     &#8377; 500/- PER DAY
+                 </div>
+                 <div class="card-footer">
+                        <img src="../images/locker1.jpg" class="img-thumbnail" style="height: 600px;">
+                    </div>
+                </div>
+                <div class="card">
+                       <div class="card-body text-primary">
+                        <input  type="checkbox" class="form-control" value="AC" id="ac">AC
+                        &#8377; 1000/- PER DAY
+                    </div>
+                    <div class="card-footer">
+                            <img src="../images/ac1.jpg" class="img-thumbnail" style="height: 600px;">
+                        </div>
+                 </div>
+             </div>
+         </div>
+       <div class="setMargin">
+           ADVANCE AMOUNT
+           <input  type="text" class="form-control" id="roomAdvance" required onkeyup="verifyText()">
+       </div> 
+       <div style="margin-top: 20px;" class="text-center form-group">
+            <button class="btn btn-primary btn-lg" onclick="Bookroom()" id="abc" disabled="disabled">BOOK ROOM</button>
+        </div>
+    </div> 
+        <div id="Bookingdetails" style="display: none;">
+                <h2 style="color: white;">BOOKING SUMMARY</h2>
+              <table class="table table-hover" style="font-size: 2em;" >
+                 <tr>
+                     <td>CUSTOMER NAME</td>
+                     <td id="lblName"></td>
+                 </tr>
+                 <tr>
+                     <td>CHECK IN DATE</td>
+                     <td id="lblDate"></td>
+                 </tr>
+                 <tr>
+                     <td>TOTAL NO OF DAYS</td>
+                     <td id="lblDays"></td>
+                 </tr>
+                 <tr>
+                     <td>TOTAL NO OF PERSONS</td>
+                     <td id="lblPersons"></td>
+                 </tr>
+                 <tr>
+                        <td>SELECTED ROOM TYPE</td>
+                        <td id="lblRoomtype"></td>
+                    </tr>
+                    <tr>
+                            <td>SELECTED AMINITIES</td>
+                            <td id="lblAminities"></td>
+                        </tr>
+                        <tr>
+                                <td>ROOM AMOUNT</td>
+                                <td id="lblAmount"></td>
+                            </tr>
+                            <tr>
+                                    <td>ADVANCE PAID</td>
+                                    <td id="lblAdvance"></td>
+                                </tr>
+                                <tr>
+                                        <td>BALANCE PAID</td>
+                                        <td id="lblBalance"></td>
+                                    </tr>
+                            
+                    
+                 <tr>
+                     <td colspan="2" align="center">
+                         <button class="btn btn-danger" onclick="Closedetails()">Close</button>
+                     </td>
+                 </tr>
+              </table>
+            </div>
+         </div>
+    </body>
+</html>
